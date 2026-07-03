@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unblox — AI venture studio. Solve once, scale everywhere.</title>
+<meta name="description" content="Unblox embeds with your team to take AI from strategy to shipped systems. When a solution is a pattern your whole industry needs, we build the company. AI-native, human-centred. Sydney.">
+<meta property="og:title" content="Unblox — Your hardest AI problem is our next company.">
+<meta property="og:description" content="AI strategy, transformation and executive education — with a venture studio engine. AI-native, human-centred.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://unblox.ai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='2' y='2' width='13' height='13' fill='%23141210'/><rect x='17' y='2' width='13' height='13' fill='%23141210'/><rect x='2' y='17' width='13' height='13' fill='%23141210'/><rect x='19' y='19' width='13' height='13' fill='%232948ff'/></svg>">
+<style>
+:root{
+  --paper:#faf8f4;
+  --paper-2:#f3f0e9;
+  --ink:#141210;
+  --ink-soft:#4c473f;
+  --line:#dcd7cc;
+  --accent:#2948ff;
+  --accent-soft:#e8ecff;
+  --radius:2px;
+  --max:1180px;
+  --font-head:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:600;line-height:1.08;letter-spacing:-0.02em}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--font-head);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)}
+.mono .idx{color:var(--accent);margin-right:8px}
+
+/* cursor glow */
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(41,72,255,0.055) 0%,rgba(41,72,255,0) 65%);
+  transform:translate(-50%,-50%);transition:opacity .4s;opacity:0}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(250,248,244,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-0.02em}
+.logo-mark{width:22px;height:22px;position:relative;flex:none}
+.logo-mark span{position:absolute;width:9px;height:9px;background:var(--ink);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.logo-mark span:nth-child(1){top:0;left:0}
+.logo-mark span:nth-child(2){top:0;right:0}
+.logo-mark span:nth-child(3){bottom:0;left:0}
+.logo-mark span:nth-child(4){bottom:0;right:0;background:var(--accent)}
+.logo:hover .logo-mark span:nth-child(4){transform:translate(4px,4px) rotate(45deg)}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.btn{display:inline-block;padding:11px 22px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:14px;border-radius:var(--radius);border:1px solid var(--ink);transition:all .25s;cursor:pointer;font-family:var(--font-body)}
+.btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.nav-links .btn{padding:9px 18px}
+
+/* hero */
+header{position:relative;padding:170px 0 90px;overflow:hidden}
+#heroGrid{position:absolute;inset:0;z-index:0;opacity:.9}
+.hero-in{position:relative;z-index:2}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.hero-eyebrow .dot{width:8px;height:8px;background:var(--accent);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+h1{font-size:clamp(42px,7vw,88px);max-width:15ch}
+h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+.hero-sub{margin-top:28px;font-size:clamp(17px,2vw,21px);color:var(--ink-soft);max-width:56ch}
+.hero-ctas{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap}
+.hero-note{margin-top:56px;display:flex;gap:36px;flex-wrap:wrap}
+.hero-note div{max-width:230px}
+.hero-note strong{display:block;font-family:var(--font-head);font-size:15px;margin-bottom:4px}
+.hero-note p{font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+
+/* sections */
+section{position:relative;z-index:2;padding:96px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(30px,4.4vw,52px);max-width:20ch}
+.sec-head p{max-width:44ch;color:var(--ink-soft)}
+
+/* what we do blocks */
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.block{background:var(--paper);padding:36px 30px 30px;position:relative;transition:background .3s;display:flex;flex-direction:column;min-height:380px}
+.block:hover{background:#fff}
+.block::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.block:hover::after{transform:scaleX(1)}
+.block h3{font-size:23px;margin:18px 0 12px}
+.block>p{color:var(--ink-soft);font-size:15px;flex:1}
+.block ul{list-style:none;margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+.block li{font-size:14px;padding:5px 0 5px 20px;position:relative;color:var(--ink)}
+.block li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:8px;background:var(--paper);border:1.5px solid var(--accent)}
+.block:hover li::before{background:var(--accent);transition:background .3s}
+.block .tag{position:absolute;top:34px;right:28px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;opacity:0;transform:translateY(4px);transition:all .3s}
+.block:hover .tag{opacity:1;transform:none}
+
+/* loop */
+#model{background:var(--ink);color:var(--paper)}
+#model .mono{color:#9a938a}
+#model .sec-head h2{color:#fff}
+#model .sec-head p{color:#b6afa4}
+.loop{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
+.loop-steps{display:flex;flex-direction:column;gap:1px;background:#2c2925;border:1px solid #2c2925}
+.loop-step{background:var(--ink);border:0;text-align:left;padding:22px 24px;cursor:pointer;display:flex;align-items:center;gap:18px;color:#8f887e;font-family:var(--font-head);font-size:19px;font-weight:500;transition:all .3s;width:100%}
+.loop-step .n{font-size:12px;letter-spacing:.12em;width:34px;flex:none;color:#6b655c}
+.loop-step .arrow{margin-left:auto;opacity:0;transition:all .3s;color:var(--accent)}
+.loop-step:hover{color:#d8d2c8}
+.loop-step.active{background:#1d1a17;color:#fff}
+.loop-step.active .n{color:var(--accent)}
+.loop-step.active .arrow{opacity:1}
+.loop-detail{border:1px solid #2c2925;padding:40px;min-height:300px;position:relative;background:#1d1a17}
+.loop-detail .mono{margin-bottom:16px;display:block}
+.loop-detail h3{font-size:clamp(24px,3vw,34px);color:#fff;margin-bottom:16px}
+.loop-detail p{color:#b6afa4;font-size:16.5px;max-width:46ch}
+.loop-detail .bar{position:absolute;bottom:0;left:0;height:2px;background:var(--accent);width:0%}
+.loop-detail.animating .bar{animation:fill 5s linear}
+@keyframes fill{from{width:0}to{width:100%}}
+.loop-kicker{margin-top:40px;padding:22px 26px;border:1px dashed #3a362f;color:#b6afa4;font-size:15px;max-width:72ch}
+.loop-kicker strong{color:#fff}
+
+/* proof */
+.ticker-wrap{overflow:hidden;border:1px solid var(--line);background:#fff;padding:26px 0;position:relative}
+.ticker{display:flex;gap:64px;white-space:nowrap;animation:scroll 36s linear infinite;width:max-content}
+.ticker-wrap:hover .ticker{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker span{font-family:var(--font-head);font-size:19px;font-weight:500;color:var(--ink-soft);display:flex;align-items:center;gap:64px}
+.ticker span::after{content:'';width:8px;height:8px;background:var(--accent);flex:none}
+.proof-note{margin-top:18px;font-size:13px;color:var(--ink-soft)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+.stat{background:var(--paper);padding:30px 26px}
+.stat b{display:block;font-family:var(--font-head);font-size:clamp(28px,3.4vw,42px);font-weight:600;letter-spacing:-0.02em}
+.stat small{color:var(--ink-soft);font-size:13.5px;line-height:1.45;display:block;margin-top:6px}
+
+/* about */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:start}
+.about h2{font-size:clamp(28px,3.8vw,44px);margin-bottom:22px}
+.about .lede{font-size:18px;color:var(--ink);margin-bottom:18px}
+.about p{color:var(--ink-soft);margin-bottom:16px}
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.principle{background:var(--paper);padding:26px 24px;transition:background .3s}
+.principle:hover{background:var(--accent-soft)}
+.principle b{font-family:var(--font-head);font-size:16px;display:block;margin-bottom:8px}
+.principle p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0}
+
+/* contact */
+#contact{background:var(--paper-2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.contact-grid h2{font-size:clamp(30px,4.4vw,50px);margin-bottom:20px}
+.contact-grid .lead-p{color:var(--ink-soft);max-width:44ch;margin-bottom:28px}
+.contact-alt{font-size:14.5px;color:var(--ink-soft)}
+.contact-alt a{color:var(--ink);font-weight:600}
+form{display:flex;flex-direction:column;gap:16px}
+.field label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid var(--line);background:#fff;font-family:var(--font-body);font-size:15px;color:var(--ink);border-radius:var(--radius);transition:border-color .2s,box-shadow .2s;appearance:none}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(41,72,255,.12)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+#formMsg{font-size:14.5px;display:none;padding:14px 16px;border:1px solid var(--line)}
+#formMsg.ok{display:block;background:#eef6ee;border-color:#bcd9bc;color:#1e5c1e}
+#formMsg.err{display:block;background:#fbeeee;border-color:#e3bcbc;color:#8a2020}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:36px 0;position:relative;z-index:2}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft)}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--accent)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.on{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+@media (max-width:920px){
+  .blocks{grid-template-columns:1fr}
+  .block{min-height:0}
+  .loop{grid-template-columns:1fr;gap:24px}
+  .about{grid-template-columns:1fr;gap:44px}
+  .contact-grid{grid-template-columns:1fr;gap:44px}
+  .stats{grid-template-columns:1fr 1fr}
+  .nav-links a:not(.btn){display:none}
+  header{padding-top:130px}
+}
+</style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#top" aria-label="Unblox home">
+      <span class="logo-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      unblox
+    </a>
+    <div class="nav-links">
+      <a href="#work">What we do</a>
+      <a href="#model">The model</a>
+      <a href="#proof">Proof</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <canvas id="heroGrid" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <div class="hero-eyebrow reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="mono">AI venture studio &amp; advisory · Sydney</span>
+    </div>
+    <h1 class="reveal d1">Your hardest AI problem is our <em>next company.</em></h1>
+    <p class="hero-sub reveal d2">Unblox embeds with your team to take AI from strategy to shipped systems. When a solution turns out to be a pattern your whole industry needs, we spin it out and build the company — with you.</p>
+    <div class="hero-ctas reveal d3">
+      <a class="btn" href="#contact">What are you trying to unblock?</a>
+      <a class="btn ghost" href="#model">See how the model works</a>
+    </div>
+    <div class="hero-note reveal d3">
+      <div><strong>AI-native</strong><p>We build with the tools we recommend. No theory without a system behind it.</p></div>
+      <div><strong>Human-centred</strong><p>AI that makes your people more capable — not a headcount spreadsheet exercise.</p></div>
+      <div><strong>Skin in the game</strong><p>The studio model means our upside is tied to solving your problem properly.</p></div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono reveal"><span class="idx">01</span>What we do</span>
+        <h2 class="reveal d1">Three blocks. One system.</h2>
+      </div>
+      <p class="reveal d2">Start with any block. They compound: strategy uncovers the problems, capability makes the change stick, and the studio turns repeated patterns into companies.</p>
+    </div>
+    <div class="blocks">
+      <div class="block reveal">
+        <span class="mono"><span class="idx">A</span></span><span class="tag">Advisory</span>
+        <h3>Strategy &amp; Transformation</h3>
+        <p>Board-level AI strategy that ends in production, not PowerPoint. We embed with your team, pick the problems that move revenue, risk or capacity, and ship working systems against your metrics.</p>
+        <ul>
+          <li>AI strategy &amp; opportunity mapping</li>
+          <li>Agentic workflow design &amp; build</li>
+          <li>Operating model to run it after we leave</li>
+        </ul>
+      </div>
+      <div class="block reveal d1">
+        <span class="mono"><span class="idx">B</span></span><span class="tag">Capability</span>
+        <h3>Executive Education</h3>
+        <p>The programs behind executive AI education for Samsung, the ATO, QBE and CBA — rebuilt for your context, not a generic curriculum. Your people leave using AI daily, not talking about it.</p>
+        <ul>
+          <li>Executive &amp; board AI programs</li>
+          <li>Team-level AI operating skills</li>
+          <li>Capability diagnostics &amp; roadmaps</li>
+        </ul>
+      </div>
+      <div class="block reveal d2">
+        <span class="mono"><span class="idx">C</span></span><span class="tag">Studio</span>
+        <h3>Venture Studio</h3>
+        <p>When an engagement uncovers a high-value problem that repeats across an industry, we co-build the company that solves it — with you as first customer, reference, and if you want it, co-owner.</p>
+        <ul>
+          <li>Pattern-to-product validation</li>
+          <li>Spin-out formation &amp; build</li>
+          <li>Operator talent &amp; capital network</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="model">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono reveal"><span class="idx">02</span>The model</span>
+        <h2 class="reveal d1">The Unblox loop</h2>
+      </div>
+      <p class="reveal d2">Consulting firms sell hours. Studios chase ideas. We run one loop that turns solved problems into companies.</p>
+    </div>
+    <div class="loop reveal">
+      <div class="loop-steps" role="tablist" aria-label="The Unblox loop">
+        <button class="loop-step active" role="tab" data-i="0"><span class="n">01</span>Embed<span class="arrow">→</span></button>
+        <button class="loop-step" role="tab" data-i="1"><span class="n">02</span>Solve<span class="arrow">→</span></button>
+        <button class="loop-step" role="tab" data-i="2"><span class="n">03</span>Spot the pattern<span class="arrow">→</span></button>
+        <button class="loop-step" role="tab" data-i="3"><span class="n">04</span>Spin out<span class="arrow">→</span></button>
+      </div>
+      <div class="loop-detail" id="loopDetail">
+        <span class="mono" id="loopKicker">Step 01</span>
+        <h3 id="loopTitle">Embed</h3>
+        <p id="loopBody">We work inside your team on a problem that matters to revenue, risk or capacity — not a pilot for the innovation lab. If it wouldn't survive a board conversation, we don't start.</p>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <div class="loop-kicker reveal d1">
+      <strong>Why this is different:</strong> your engagement fee buys a solved problem either way. If the pattern generalises, you get early access — and optional equity — in the company built to solve it at industry scale.
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono reveal"><span class="idx">03</span>Proof</span>
+        <h2 class="reveal d1">Trusted in rooms that don't tolerate hype.</h2>
+      </div>
+    </div>
+    <div class="ticker-wrap reveal" aria-label="Organisations worked with">
+      <div class="ticker" id="ticker"></div>
+    </div>
+    <p class="proof-note reveal">Programs delivered for, backed by, or built with the above organisations.</p>
+    <div class="stats">
+      <div class="stat reveal"><b>1,000+</b><small>executives and leaders taken through AI programs</small></div>
+      <div class="stat reveal d1"><b>Top-tier</b><small>enterprise &amp; government clients across finance, insurance and public sector</small></div>
+      <div class="stat reveal d2"><b>Founder-led</b><small>AI hardware company backed by HAX &amp; Johnson &amp; Johnson</small></div>
+      <div class="stat reveal d3"><b>2 hats</b><small>academic rigour (UNSW) + operator reality (Stanford StartX alum)</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <span class="mono reveal"><span class="idx">04</span>Who's behind it</span>
+      <h2 class="reveal d1">Built by an operator who teaches, and a teacher who ships.</h2>
+      <p class="lede reveal d2">Unblox is led by Lamont Tang — AI strategist, founder, and faculty at AGSM @ UNSW Business School and the UNSW AI Institute.</p>
+      <p class="reveal d2">Lamont has run executive AI programs for Samsung, the Australian Taxation Office, QBE and Commonwealth Bank; founded a HAX and Johnson &amp; Johnson-backed AI hardware company; and is a Stanford StartX alum. That mix matters: most advisors have read about AI transformation. We've been on both sides of it — the boardroom and the build.</p>
+      <p class="reveal d2">Unblox exists because the same pattern kept appearing: enterprises don't need more AI advice, they need someone accountable for the outcome. And the best problems — the expensive, repeated, industry-wide ones — deserve more than a consulting engagement. They deserve a company.</p>
+    </div>
+    <div class="principles reveal d2">
+      <div class="principle"><b>No decks without systems</b><p>Every engagement ends with something running in production, and people who can run it.</p></div>
+      <div class="principle"><b>Humans set the bar</b><p>We design AI around judgment, trust and adoption — the tech is the easy part.</p></div>
+      <div class="principle"><b>Compound, don't pilot</b><p>Pilots die in labs. We pick problems whose solutions compound across the org — or the industry.</p></div>
+      <div class="principle"><b>Skin in the game</b><p>Where it makes sense, we take outcomes and equity over hours. Incentives beat promises.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="mono reveal"><span class="idx">05</span>Contact</span>
+      <h2 class="reveal d1">What are you trying to unblock?</h2>
+      <p class="lead-p reveal d2">Tell us the problem in plain language. If we're not the right fit, we'll say so and point you somewhere better — usually within 48 hours.</p>
+      <p class="contact-alt reveal d2">Prefer email? <a href="mailto:hello@unblox.ai">hello@unblox.ai</a></p>
+    </div>
+    <form id="leadForm" class="reveal d2" novalidate>
+      <div class="field-row">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
+        <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="f-org">Organisation</label><input id="f-org" name="org" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="f-segment">I'm a…</label>
+          <select id="f-segment" name="segment">
+            <option>Enterprise executive</option>
+            <option>Exec ed / L&amp;D buyer</option>
+            <option>Founder / CEO</option>
+            <option>Partner / investor</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="f-msg">What are you trying to unblock?</label><textarea id="f-msg" name="message" required placeholder="e.g. Our claims team drowns in unstructured documents. We've run two pilots; neither made it to production."></textarea></div>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input name="company_website" tabindex="-1" autocomplete="off"></label></div>
+      <div id="formMsg" role="status"></div>
+      <button class="btn" type="submit" id="submitBtn">Send it →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Unblox · Sydney, Australia</span>
+    <span><a href="mailto:hello@unblox.ai">hello@unblox.ai</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>AI-native. Human-centred.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* cursor glow */
+  var glow = document.getElementById('glow');
+  if(!reduced && matchMedia('(pointer:fine)').matches){
+    document.addEventListener('mousemove', function(e){
+      glow.style.opacity = 1;
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  }
+
+  /* reveal on scroll */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('on'); io.unobserve(en.target); } });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* hero block grid */
+  var cv = document.getElementById('heroGrid'), ctx = cv.getContext('2d');
+  var cell = 46, gap = 10, cols, rows, mouse = {x:-9999,y:-9999}, cells = [];
+  function size(){
+    cv.width = cv.offsetWidth * devicePixelRatio;
+    cv.height = cv.offsetHeight * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    cols = Math.ceil(cv.offsetWidth/(cell+gap))+1;
+    rows = Math.ceil(cv.offsetHeight/(cell+gap))+1;
+    cells = [];
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)cells.push({x:c*(cell+gap),y:r*(cell+gap),a:0,pop:0});
+  }
+  size(); addEventListener('resize', size);
+  cv.parentElement.addEventListener('mousemove', function(e){
+    var b = cv.getBoundingClientRect(); mouse.x = e.clientX-b.left; mouse.y = e.clientY-b.top;
+  });
+  cv.parentElement.addEventListener('mouseleave', function(){ mouse.x = mouse.y = -9999; });
+  var t = 0;
+  function draw(){
+    ctx.clearRect(0,0,cv.offsetWidth,cv.offsetHeight);
+    t++;
+    if(!reduced && Math.random()<0.03){
+      var i = Math.floor(Math.random()*cells.length);
+      cells[i].pop = 1;
+    }
+    var fadeY = cv.offsetHeight;
+    cells.forEach(function(s){
+      var dx = s.x+cell/2-mouse.x, dy = s.y+cell/2-mouse.y;
+      var d = Math.sqrt(dx*dx+dy*dy);
+      var target = Math.max(0, 1 - d/240);
+      s.a += (target - s.a)*0.12;
+      if(s.pop>0) s.pop -= 0.012;
+      var vFade = 1 - (s.y/fadeY)*0.9;               /* fade toward bottom */
+      var base = 0.05*vFade;                           /* faint resting grid */
+      var glowA = s.a*0.55 + Math.max(0,s.pop)*0.3;
+      if(base>0.004){
+        ctx.strokeStyle = 'rgba(20,18,16,'+base+')';
+        ctx.strokeRect(s.x+.5, s.y+.5, cell, cell);
+      }
+      if(glowA>0.01){
+        ctx.strokeStyle = 'rgba(41,72,255,'+Math.min(0.8,glowA)+')';
+        ctx.strokeRect(s.x+.5, s.y+.5, cell, cell);
+        ctx.fillStyle = 'rgba(41,72,255,'+glowA*0.12+')';
+        ctx.fillRect(s.x, s.y, cell, cell);
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  if(!reduced) draw(); else {
+    /* static faint grid for reduced motion */
+    cells.forEach(function(s){ ctx.strokeStyle='rgba(20,18,16,0.05)'; ctx.strokeRect(s.x+.5,s.y+.5,cell,cell); });
+  }
+
+  /* loop tabs */
+  var steps = [
+    {k:'Step 01', t:'Embed', b:'We work inside your team on a problem that matters to revenue, risk or capacity — not a pilot for the innovation lab. If it wouldn’t survive a board conversation, we don’t start.'},
+    {k:'Step 02', t:'Solve', b:'We ship a working system, measured against your metrics — cycle time, loss ratio, cost-to-serve — not ours. Your team builds alongside us so the capability stays when we leave.'},
+    {k:'Step 03', t:'Spot the pattern', b:'If the same expensive problem shows up across your industry, that’s not a project. That’s a company. We validate the pattern with other operators before anything gets built.'},
+    {k:'Step 04', t:'Spin out', b:'We form the venture, recruit the operators, and build the product — with you as first customer and reference. Partners can take equity. The loop starts again.'}
+  ];
+  var btns = document.querySelectorAll('.loop-step');
+  var detail = document.getElementById('loopDetail');
+  var idx = 0, timer;
+  function show(i, user){
+    idx = i;
+    btns.forEach(function(b,j){ b.classList.toggle('active', j===i); b.setAttribute('aria-selected', j===i); });
+    document.getElementById('loopKicker').textContent = steps[i].k;
+    document.getElementById('loopTitle').textContent = steps[i].t;
+    document.getElementById('loopBody').textContent = steps[i].b;
+    detail.classList.remove('animating'); void detail.offsetWidth; detail.classList.add('animating');
+    if(user){ clearInterval(timer); if(!reduced) start(); }
+  }
+  function start(){ timer = setInterval(function(){ show((idx+1)%steps.length); }, 5000); }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ show(+b.dataset.i, true); }); });
+  if(!reduced){
+    var mio = new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){ detail.classList.add('animating'); start(); mio.disconnect(); }
+    },{threshold:.3});
+    mio.observe(detail);
+  }
+
+  /* proof ticker */
+  var orgs = ['Samsung','Australian Taxation Office','QBE','Commonwealth Bank','AGSM @ UNSW','UNSW AI Institute','Stanford StartX','HAX','Johnson & Johnson'];
+  var half = orgs.map(function(o){ return '<span>'+o+'</span>'; }).join('');
+  document.getElementById('ticker').innerHTML = half + half;
+
+  /* lead form */
+  var form = document.getElementById('leadForm'), msg = document.getElementById('formMsg'), btn = document.getElementById('submitBtn');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.className = ''; msg.textContent = '';
+    var data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      org: form.org.value.trim(),
+      segment: form.segment.value,
+      message: form.message.value.trim(),
+      website: form.company_website.value, /* honeypot */
+      source: 'unblox.ai'
+    };
+    if(!data.name || !data.email || !data.message){
+      msg.className = 'err'; msg.textContent = 'Name, email and a short note are required.'; return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('/api/lead', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+    }).then(function(r){
+      if(!r.ok) throw new Error('bad status '+r.status);
+      form.reset();
+      msg.className = 'ok'; msg.textContent = 'Got it. We’ll come back to you within 48 hours.';
+      btn.textContent = 'Sent ✓';
+    }).catch(function(){
+      msg.className = 'err';
+      msg.innerHTML = 'Something broke on our side. Email us directly: <a href="mailto:hello@unblox.ai">hello@unblox.ai</a>';
+      btn.disabled = false; btn.textContent = 'Send it →';
+    });
+  });
+})();
+</script>
+</body>
+</html>
